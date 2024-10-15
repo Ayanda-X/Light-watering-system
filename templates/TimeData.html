@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Data</title>
+    <link rel="stylesheet" href="/static/style.css">
+  </head>
+  <body>
+        <!--Creating a Navbar-->
+        <div class="navbar">
+          <nav>
+            <h1 class="pls">Smart Multizone Outdoor Plant Watering System</h1>
+            <ul>
+              <li><a href="{{ url_for('index3', username=username) }}">Dashboard</a></li>
+              <li><a href="{{ url_for('monitor', username=username) }}">Monitor</a></li>
+              <li><a href="{{ url_for('Time', username=username) }}">Scheduling</a></li>
+              <li><a href="{{ url_for('login2') }}">Log Out</a></li>
+      
+              </ul>
+              </ul>
+          </nav>
+          </div>
+          
+          <div class="receipt">
+            <h1>Time Scheduling Data for  {{ username }}</h1>
+            <p>Username: {{ username }}</p>
+            <p>Zone: {{ row[1] }}</p>
+            <p>Timeframe: {{ row[2] }}</p>
+            <p>Water levels: {{ row[3] }}</p>
+            <p>Liters: {{ row[4] }}</p>
+            <p>Duration: {{ row[5] }} minutes</p>
+            <p>Valid for: {{ row[6] }} days</p>
+
+            
+      {% set schedule_id = row[0] if row[0] else '' %}
+            <button type="submit" class="btn-log">
+              <a href="{{ url_for('modify', username=username, schedule_id=row[0]) }}">Modify time scheduling details</a>
+            </button>
+            <button type="submit" class="btn-log">
+              <a href="{{ url_for('delete', username=username, schedule_id=row[0]) }}">Delete time scheduling details</a>
+            </button>
+        </div>
+  
+</body>
+</html>
